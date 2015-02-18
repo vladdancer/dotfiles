@@ -1,29 +1,56 @@
-[user]
-  name = Jeff Geerling
-  email = geerlingguy@mac.com
-[core]
-  editor = vi
-  excludesfile = ~/.gitignore
 [color]
-  branch = auto
-  diff = auto
-  interactive = auto
-  status = auto
-[web]
-  browser = google-chrome
-[credential]
-  helper = osxkeychain
-[push]
-  default = simple
-[merge]
-  tool = kdiff3
-[difftool]
-  prompt = false
+  ui = true
+[core]
+  whitespace = trailing-space,tab-in-indent
+  editor = nano
+  filemode = false
+
+#[commit]
+#  template = ~/.git.commit.template
+
+[user]
+  name = Vladyslav Moyseenko
+  email = vlad.dancer@gmail.com
+
+# Set credential helper on ubuntu using gnome-keyring
+# http://stackoverflow.com/questions/13385690/how-to-use-git-with-gnome-keyring-integration
+#[credential]
+#  helper = git-credential-gnome-keyring
+
 [alias]
-  c = commit
-  ca = commit -a
-  cm = commit -m
-  cam = commit -am
-  d = diff
-  dc = diff --cached
-  l = log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset" --abbrev-commit
+  s = status
+  ffix = config core.filemode false 
+  sml = ls-files -m
+  sm = status -uno
+  b = branch
+  ba = branch -a -v -v
+  bs = !git-branch-status
+  bsi = !git-branch-status -i
+  ci = commit
+  co = checkout
+  d = diff -C
+  ds = diff -C --stat
+  dsp = diff -C --stat -p
+  dw = diff -C --color-words
+  p = pull
+
+  l = log -C --decorate
+  ls = log -C --stat --decorate
+  lsp = log -C --stat -p --decorate
+  lg = log --graph '--pretty=tformat:%Cblue%h%Creset %Cgreen%ar%Creset %Cblue%d%Creset %s'
+  lga = log --graph '--pretty=tformat:%Cblue%h%Creset %Cgreen%ar%Creset %Cblue%d%Creset %s' --all
+  l19 = log --graph '--pretty=tformat:%Cblue%h%Creset %Cgreen%ar%Creset %Cblue%d%Creset %s' --all -19
+
+# For hard cases.
+  lsd = log --graph '--pretty=tformat:%Cblue%h%Creset %Cgreen%ar%Creset %Cblue%d%Creset %s' --all --simplify-by-decoration
+  ru = remote update
+  sb = show-branch --sha1-name
+  ls-del = ls-files -d
+# Including remote files.  
+  ls-mod = ls-files -m 
+  ls-new = ls-files --exclude-standard -o
+  ls-ign = ls-files --exclude-standard -o -i
+  ka = !gitk --all
+  kdo = !gitk --date-order
+  kado = !gitk --all --date-order
+  kasd = !gitk --all --simplify-by-decoration
