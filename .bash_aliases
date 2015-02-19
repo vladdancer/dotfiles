@@ -81,6 +81,31 @@ PathFull="\w"  #path
 NewLine="\n"
 Jobs="\j"
 
+# This PS1 snippet was adopted from code for MAC/BSD I saw from: http://allancraig.net/index.php?option=com_content&view=article&id=108:ps1-export-command-for-git&catid=45:general&Itemid=96
+# I tweaked it to work on UBUNTU BASH shell 11.04 - 12.04.  Plus I made it mo' better
+export GIT_PS1_SHOWDIRTYSTATE=1
+export GIT_PS1_SHOWSTASHSTATE=1
+export GIT_PS1_SHOWUNTRACKEDFILES=1
+export PS1=$IBlack$Time12h$Color_Off'$(git branch &>/dev/null;\
+if [ $? -eq 0 ]; then \
+  echo "$(echo `git status` | grep "nothing to commit" > /dev/null 2>&1; \
+  if [ "$?" -eq "0" ]; then \
+    #Clean repository - nothing to commit
+    echo "'$Green'"$(__git_ps1 " (%s)"); \
+  else \
+    # changes to working tree
+    echo "'$IRed'"$(__git_ps1 " {%s}"); \
+  fi) '$BYellow$PathShort$Color_Off'\$ "; \
+else \
+  echo " '$Yellow$PathShort$Color_Off'\$ "; \
+fi)'
+
+# MDR - keep an eternal history file.
+# ref: http://www.debian-administration.org/articles/543
+export HISTTIMEFORMAT="%s "
+PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND ; }"'echo $$ $USER \
+               "$(history 1)" >> ${HOME}/.bash_eternal_history'
+
 # Color ls's.
 alias vdir='vdir --color=auto'
 alias ll='ls -alF'
