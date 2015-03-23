@@ -106,6 +106,11 @@ export HISTTIMEFORMAT="%s "
 PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND ; }"'echo $$ $USER \
                "$(history 1)" >> ${HOME}/.bash_eternal_history'
 
+# Helper function for import a database dump.
+function drush_db_import() {
+  $(drush sql-connect) < $1
+}
+
 # Color ls's.
 alias vdir='vdir --color=auto'
 alias ll='ls -alF'
@@ -118,6 +123,7 @@ alias drsp='cp sites/default/default.settings.php sites/default/settings.php'
 alias drcc='drush cache-clear all'
 alias drdb='drush updb && drush cc all'
 alias drdu='drush sql-dump --ordered-dump --result-file=dump.sql'
+alias drdi=drush_db_import
 alias dren='drush pm-enable'
 alias drdis='drush pm-disable'
 alias drf='drush features'
@@ -136,5 +142,7 @@ alias grep='grep --color=auto --exclude-dir=\.git'
 # Add an "alert" alias for long running commands,
 # Use like so: sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-alias webr='sudo service apache2 restart'
+alias webr='sudo service nginx restart'
 alias g='UBUNTU_MENUPROXY=0 geany'
+# Go to websites folder: /var/www/
+alias cdw='cd /var/www/'
