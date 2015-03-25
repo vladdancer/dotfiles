@@ -144,6 +144,7 @@ alias grep='grep --color=auto --exclude-dir=\.git'
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 alias webr='sudo service nginx restart'
 alias ntr='sudo /etc/init.d/networking restart'
+alias mysqlr='sudo service mysql restart'
 alias g='UBUNTU_MENUPROXY=0 geany'
 # Go to websites folder: /var/www/
 alias cdw='cd /var/www/'
