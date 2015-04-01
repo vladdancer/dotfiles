@@ -132,6 +132,7 @@ alias drfu='drush -y features-update'
 alias drfr='drush -y features-revert'
 alias drfra='drush -y features-revert all'
 alias dr='drush'
+alias drdev='drush dis toolbar, overlay -y && drush dl admin_menu && drush en admin_menu, admin_menu_toolbar -y && drush en devel -y && drush cc all'
 
 # Git aliases
 alias gitpp='git pull && git push'
