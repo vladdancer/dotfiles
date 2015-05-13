@@ -149,3 +149,4 @@ alias mysqlr='sudo service mysql restart'
 alias g='UBUNTU_MENUPROXY=0 geany'
 # Go to websites folder: /var/www/
 alias cdw='cd /var/www/'
+alias sn='sudo nano'
