@@ -108,7 +108,12 @@ PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND ; }"'echo $$ $USER \
 
 # Helper function for import a database dump.
 function drush_db_import() {
+  echo "Importing the database..."
   $(drush sql-connect) < $1
+  echo "Success!"
+  sleep 1
+  echo "Clearing all caches..."
+  drush cc all
 }
 
 # Color ls's.
