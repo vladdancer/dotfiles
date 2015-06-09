@@ -115,6 +115,12 @@ function drush_db_import() {
   echo "Clearing all caches..."
   drush cc all
 }
+# Helper function for completely re-install the specified module.
+function module_reinstall() {
+  drush dis $1 -y
+  drush pm-uninstall $1 -y
+  drush en $1 -y
+}
 
 # Color ls's.
 alias vdir='vdir --color=auto'
@@ -138,6 +144,7 @@ alias drfr='drush -y features-revert'
 alias drfra='drush -y features-revert all'
 alias dr='drush'
 alias drdev='drush dis toolbar, overlay -y && drush en admin_menu, admin_menu_toolbar -y && drush en devel -y && drush cc all'
+alias drri=module_reinstall
 
 # Git aliases
 alias gitpp='git pull && git push'
