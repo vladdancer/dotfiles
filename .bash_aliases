@@ -117,9 +117,9 @@ function drush_db_import() {
 }
 # Helper function for completely re-install the specified module.
 function module_reinstall() {
-  drush dis $1 -y
-  drush pm-uninstall $1 -y
-  drush en $1 -y
+  drush dis $1
+  drush pm-uninstall $1
+  drush en $1
 }
 
 # Color ls's.
