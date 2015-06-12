@@ -115,6 +115,12 @@ function drush_db_import() {
   echo "Clearing all caches..."
   drush cc all
 }
+# Helper function for completely re-install the specified module.
+function module_reinstall() {
+  drush dis $1
+  drush pm-uninstall $1
+  drush en $1
+}
 
 function lso() { 
   ls -alG "$@" | awk '{k=0;for(i=0;i<=8;i++)k+=((substr($1,i+2,1)~/[rwx]/)*2^(8-i));if(k)printf(" %0o ",k);print}'; 
@@ -142,6 +148,7 @@ alias drfr='drush -y features-revert'
 alias drfra='drush -y features-revert all'
 alias dr='drush'
 alias drdev='drush dis toolbar, overlay -y && drush en admin_menu, admin_menu_toolbar -y && drush en devel -y && drush cc all'
+alias drri=module_reinstall
 
 # Git aliases
 alias gitpp='git pull && git push'
