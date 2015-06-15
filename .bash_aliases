@@ -121,6 +121,10 @@ function module_reinstall() {
   drush pm-uninstall $1
   drush en $1
 }
+# Helper function for checking the IP type of a current active internet connection.
+function check_ip_type() {
+  nmcli con list id "$(iwgetid -r)" | awk '$1 == "ipv4.method:" { if ($2 == "manual") {print "static"} else if ($2 == "auto") {print "dynamic"} else {print "unknown"}}'
+}
 
 # Color ls's.
 alias vdir='vdir --color=auto'
@@ -159,6 +163,7 @@ alias webr='sudo service nginx restart'
 alias ntr='sudo service network-manager restart'
 alias mysqlr='sudo service mysql restart'
 alias g='UBUNTU_MENUPROXY=0 geany'
+alias ip-type=check_ip_type
 # Go to websites folder: /var/www/
 alias cdw='cd /var/www/'
 alias sn='sudo nano'
