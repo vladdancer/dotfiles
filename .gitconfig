@@ -9,8 +9,6 @@
 #  template = ~/.git.commit.template
 
 [user]
-  name = Vladyslav Moyseenko
-  email = vlad.dancer@gmail.com
 
 # Set credential helper on ubuntu using gnome-keyring
 # http://stackoverflow.com/questions/13385690/how-to-use-git-with-gnome-keyring-integration
