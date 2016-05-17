@@ -145,6 +145,7 @@ alias drfra='drush -y features-revert all'
 alias dr='drush'
 alias drdev='drush dis toolbar, overlay -y && drush en admin_menu, admin_menu_toolbar -y && drush en devel -y && drush cc all'
 alias drri=module_reinstall
+alias dcr='drush cache-rebuild'
 
 # Git aliases
 alias gitpp='git pull && git push'
