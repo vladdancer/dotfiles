@@ -106,22 +106,6 @@ export HISTTIMEFORMAT="%s "
 PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND ; }"'echo $$ $USER \
                "$(history 1)" >> ${HOME}/.bash_eternal_history'
 
-# Helper function for import a database dump.
-function drush_db_import() {
-  echo "Importing the database..."
-  $(drush sql-connect) < $1
-  echo "Success!"
-  sleep 1
-  echo "Clearing all caches..."
-  drush cc all
-}
-# Helper function for completely re-install the specified module.
-function module_reinstall() {
-  drush dis $1
-  drush pm-uninstall $1
-  drush en $1
-}
-
 function lso() { 
   ls -alG "$@" | awk '{k=0;for(i=0;i<=8;i++)k+=((substr($1,i+2,1)~/[rwx]/)*2^(8-i));if(k)printf(" %0o ",k);print}'; 
 }
@@ -131,24 +115,6 @@ alias vdir='vdir --color=auto'
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
-
-# Drush aliases
-alias dcc='drush cc all'
-alias drsp='cp sites/default/default.settings.php sites/default/settings.php'
-alias drcc='drush cache-clear all'
-alias drdb='drush updb && drush cc all'
-alias drdu='drush sql-dump --ordered-dump --result-file=dump.sql'
-alias drdi=drush_db_import
-alias dren='drush pm-enable'
-alias drdis='drush pm-disable'
-alias drf='drush features'
-alias drfd='drush features-diff'
-alias drfu='drush -y features-update'
-alias drfr='drush -y features-revert'
-alias drfra='drush -y features-revert all'
-alias dr='drush'
-alias drdev='drush dis toolbar, overlay -y && drush en admin_menu, admin_menu_toolbar -y && drush en devel -y && drush cc all'
-alias drri=module_reinstall
 
 # Git aliases
 alias gitpp='git pull && git push'
@@ -162,7 +128,5 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 alias webr='sudo service nginx restart'
 alias ntr='sudo service network-manager restart'
 alias mysqlr='sudo service mysql restart'
-alias g='UBUNTU_MENUPROXY=0 geany'
-# Go to websites folder: /var/www/
 alias cdw='cd /var/www/'
 alias sn='sudo nano'
